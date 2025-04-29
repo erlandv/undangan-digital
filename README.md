@@ -3,6 +3,3 @@ Template website undangan pernikahan sederhana dengan Bootstrap, AOS, Fontawsome
 
 ## Preview
 ![Thumbnail](/assets/images/preview.png)
-
-## Demo
-[https://tari.erland.me/?to=John%20Doe](https://tari.erland.me/?to=John%20Doe)
