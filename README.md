@@ -3,3 +3,6 @@ Template website undangan pernikahan sederhana dengan Bootstrap, AOS, Fontawsome
 
 ## Preview
 ![Thumbnail](/assets/images/preview.png)
+
+## Credit
+Dibuat oleh [dewanakl](https://github.com/dewanakl)
