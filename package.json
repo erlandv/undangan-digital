@@ -1,0 +1,23 @@
+{
+    "devDependencies": {
+        "@eslint/js": "^9.19.0",
+        "eslint": "^9.19.0",
+        "fs-extra": "^11.3.0",
+        "globals": "^15.14.0",
+        "htmlhint": "^1.1.4",
+        "madge": "^8.0.0",
+        "stylelint": "^16.6.1",
+        "stylelint-config-recommended": "^14.0.0"
+    },
+    "scripts": {
+        "lint:js": "eslint js",
+        "lint:css": "stylelint css",
+        "lint:html": "htmlhint **/*.html",
+        "dev": "npx esbuild js/*.js --bundle --outdir=dist --servedir=.",
+        "build": "npx esbuild js/*.js --bundle --minify --outdir=dist",
+        "build:public": "npm run build && node -e \"const fs = require('fs-extra'); fs.ensureDir('public').then(() => Promise.all(['assets', 'css', 'dist', 'index.html', 'dashboard.html'].map((f) => fs.copy(f, 'public/' + f)))).then(() => console.log('✅ Successfully!'));\""
+    },
+    "dependencies": {
+        "esbuild": "^0.24.2"
+    }
+}
