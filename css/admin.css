@@ -1,0 +1,52 @@
+@import url("common.css");
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(192, 192, 192, 0.8);
+    border-radius: 1rem;
+    border: 0.25rem solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(192, 192, 192, 1);
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+}
+
+html[data-bs-theme="light"] .btn-theme-auto {
+    color: var(--bs-dark);
+    background-color: var(--bs-gray-100);
+}
+
+html[data-bs-theme="dark"] .btn-theme-auto {
+    color: var(--bs-light);
+    background-color: var(--bs-gray-800);
+}
+
+html[data-bs-theme="dark"] .btn-theme-auto:hover:not(.nav-link.active) {
+    color: var(--bs-light);
+    background-color: var(--bs-gray-600);
+}
+
+html[data-bs-theme="light"] .btn-theme-auto:hover:not(.nav-link.active) {
+    color: var(--bs-dark);
+    background-color: var(--bs-gray-300);
+}
+
+.logout:hover {
+    color: var(--bs-light) !important;
+    background-color: var(--bs-danger) !important;
+}
