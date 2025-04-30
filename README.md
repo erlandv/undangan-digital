@@ -1,8 +1,13 @@
-# Template undangan pernikahan sederhana
-Template website undangan pernikahan sederhana dengan Bootstrap, AOS, Fontawsome, Normalize, Confetti, Google Fonts, dan Vanilla JS.
+# Undangan Pernikahan Digital
+Undangan pernikahan digital dengan tampilan dan fitur yang sederhana. Dibangun dengan Bootstrap, AOS, Normalize, Confetti, Google Fonts, dan Vanilla JS.
 
 ## Preview
 ![Thumbnail](/assets/images/preview.png)
 
+Live preview: [https://ai.erland.me/?to=Sahabatku](https://ai.erland.me/?to=Sahabatku)
+
+## License
+[Undangan Digital](https://github.com/erlandv/undangan-digital) is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
 ## Credit
-Dibuat oleh [dewanakl](https://github.com/dewanakl)
+Created by [dewanakl](https://github.com/dewanakl).
