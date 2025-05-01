@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Generator untuk Nama Tamu Undangan</title>
@@ -11,7 +12,6 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="URL Generator untuk Nama Tamu Undangan">
     <meta name="theme-color" content="#222222">
-    <meta name="color-scheme" content="dark light">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="canonical" href="https://tari.erland.me/generator">
     <link rel="shortcut icon" type="image/x-icon" href="https://tari.erland.me/assets/favicon.ico">
@@ -19,86 +19,107 @@
     <link rel="icon" type="image/x-icon" href="https://tari.erland.me/assets/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap">
     <link rel="stylesheet" href="./css/generator.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="container">
-      <h1>URL Generator</h1>
-      <p>Tools sederhana untuk generate URL parameters dengan nama tamu undangan</p>
-      <div class="input-group">
-        <label for="baseUrl">URL Undangan</label>
-        <input type="text" id="baseUrl" value="https://tari.erland.me" />
-      </div>
-      <div class="input-group">
-        <label for="guestName">Nama Tamu Undangan</label>
-        <input type="text" id="guestName" placeholder="Ketik nama tamu undangan" />
-        <div id="errorMessage" class="error-message"></div>
-      </div>
-      <button onclick="generateUrl()">Generate URL</button>
-      <div class="result-container" id="resultContainer">
-        <label for="generatedUrl">Hasil URL Undangan</label>
-        <div class="result-row">
-          <input type="text" id="generatedUrl" readonly />
-          <span class="copy-btn" onclick="copyUrl()">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="m13 20a5.006 5.006 0 0 0 5-5v-8.757a3.972 3.972 0 0 0 -1.172-2.829l-2.242-2.242a3.972 3.972 0 0 0 -2.829-1.172h-4.757a5.006 5.006 0 0 0 -5 5v10a5.006 5.006 0 0 0 5 5zm-9-5v-10a3 3 0 0 1 3-3s4.919.014 5 .024v1.976a2 2 0 0 0 2 2h1.976c.01.081.024 9 .024 9a3 3 0 0 1 -3 3h-6a3 3 0 0 1 -3-3zm18-7v11a5.006 5.006 0 0 1 -5 5h-9a1 1 0 0 1 0-2h9a3 3 0 0 0 3-3v-11a1 1 0 0 1 2 0z" />
-            </svg>
-          </span>
+        <h1>URL Generator</h1>
+        <p>Tools sederhana untuk generate URL parameters dengan nama tamu undangan</p>
+
+        <div class="input-group">
+            <label for="baseUrl">URL Undangan</label>
+            <input type="text" id="baseUrl" placeholder="Ketik URL undangan" value="https://tari.erland.me" />
         </div>
-        <div id="copyMessage" class="success-message"></div>
-      </div>
+
+        <div class="input-group">
+            <label for="guestName">Nama Tamu Undangan</label>
+            <input type="text" id="guestName" placeholder="Ketik nama tamu undangan" />
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <div class="result-container" id="resultContainer">
+            <label for="generatedUrl">Hasil URL Undangan</label>
+            <div class="result-row">
+                <input type="text" id="generatedUrl" readonly />
+                <span class="copy-btn" onclick="copyUrl()">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m13 20a5.006 5.006 0 0 0 5-5v-8.757a3.972 3.972 0 0 0 -1.172-2.829l-2.242-2.242a3.972 3.972 0 0 0 -2.829-1.172h-4.757a5.006 5.006 0 0 0 -5 5v10a5.006 5.006 0 0 0 5 5zm-9-5v-10a3 3 0 0 1 3-3s4.919.014 5 .024v1.976a2 2 0 0 0 2 2h1.976c.01.081.024 9 .024 9a3 3 0 0 1 -3 3h-6a3 3 0 0 1 -3-3zm18-7v11a5.006 5.006 0 0 1 -5 5h-9a1 1 0 0 1 0-2h9a3 3 0 0 0 3-3v-11a1 1 0 0 1 2 0z" />
+                    </svg>
+                </span>
+            </div>
+            <div id="copyMessage" class="success-message"></div>
+        </div>
     </div>
+
     <script>
-      const getEl = (id) => document.getElementById(id);
-      const isValidUrl = (url) => {
-        try {
-          new URL(url);
-          return true;
-        } catch {
-          return false;
-        }
-      };
+        const $ = document.getElementById.bind(document);
 
-      function generateUrl() {
-        const baseUrlInput = getEl("baseUrl").value.trim();
-        const guestName = getEl("guestName").value.trim();
-        const errorMessage = getEl("errorMessage");
-        const copyMessage = getEl("copyMessage");
-        const generatedUrl = getEl("generatedUrl");
-        const resultContainer = getEl("resultContainer");
-        
-        [errorMessage, copyMessage].forEach((el) => (el.textContent = ""));
-        generatedUrl.value = "";
-        if (!guestName) {
-          errorMessage.textContent = "Isi nama tamunya dulu dong!";
-          return;
-        }
-        if (!isValidUrl(baseUrlInput)) {
-          errorMessage.textContent = "URL undangan gak valid nih, cek lagi ya!";
-          return;
-        }
-        const baseUrl = baseUrlInput.endsWith("/") ? baseUrlInput : `${baseUrlInput}/`;
-        const finalUrl = `${baseUrl}?to=${encodeURIComponent(guestName)}`;
-        generatedUrl.value = finalUrl;
-        resultContainer.style.display = "flex";
-        setTimeout(() => (copyMessage.textContent = ""), 5000);
-      }
+        const isValidUrl = url => {
+            try {
+                new URL(url);
+                return true;
+            } catch {
+                return false;
+            }
+        };
 
-      function copyUrl() {
-        const urlField = getEl("generatedUrl");
-        const copyMessage = getEl("copyMessage");
-        const urlValue = urlField.value;
-        copyMessage.textContent = "";
-        if (!urlValue) {
-          copyMessage.textContent = "Belum ada URL yang bisa dicopy!";
-          copyMessage.style.color = "#dc3545";
-          return;
+        function generateUrl() {
+            const baseUrl = $("baseUrl").value.trim();
+            const guestName = $("guestName").value.trim();
+            const errorMessage = $("errorMessage");
+            const generatedUrl = $("generatedUrl");
+
+            errorMessage.textContent = "";
+            generatedUrl.value = "";
+
+            if (!baseUrl || !isValidUrl(baseUrl)) {
+                errorMessage.textContent = "URL undangan gak valid, cek lagi ya!";
+                return;
+            }
+
+            if (!guestName) {
+                errorMessage.textContent = "Isi nama tamunya dulu ya...";
+                return;
+            }
+
+            const finalBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+            generatedUrl.value = `${finalBase}?to=${encodeURIComponent(guestName)}`;
         }
-        urlField.select();
-        document.execCommand("copy");
-        copyMessage.textContent = "URL udah dicopy ke clipboard!";
-        copyMessage.style.color = "#28a745";
-        setTimeout(() => (copyMessage.textContent = ""), 5000);
-      }
+
+        function copyUrl() {
+            const urlField = $("generatedUrl");
+            const copyMessage = $("copyMessage");
+
+            copyMessage.textContent = "";
+
+            if (!urlField.value) {
+                copyMessage.textContent = "Belum ada URL yang bisa dicopy!";
+                copyMessage.style.color = "#dc3545";
+                return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(urlField.value)
+                    .then(() => {
+                        showCopySuccess(copyMessage);
+                    });
+            } else {
+
+                urlField.select();
+                document.execCommand("copy");
+                showCopySuccess(copyMessage);
+            }
+        }
+
+        function showCopySuccess(element) {
+            element.textContent = "URL udah dicopy ke clipboard!";
+            element.style.color = "#28a745";
+            setTimeout(() => element.textContent = "", 5000);
+        }
+
+        $("guestName").addEventListener("input", generateUrl);
+        $("baseUrl").addEventListener("input", generateUrl);
     </script>
-  </body>
+</body>
+
 </html>
