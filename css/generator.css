@@ -1,146 +1,133 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    font-family: "Andika", sans-serif !important;
-    background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 1rem;
-  }
-  
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Andika", sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.container {
+  background-color: #fff;
+  padding: 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
+}
+
+.container:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+}
+
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+p {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #000000;
+  outline: none;
+}
+
+input[readonly] {
+  background-color: #f5f7fa;
+}
+
+.input-group {
+  margin-bottom: 1.25rem;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.result-container {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.result-row input {
+  padding-right: 3rem;
+}
+
+.copy-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #333;
+}
+
+.copy-btn:hover {
+  background-color: #d5d5d5;
+}
+
+@media (max-width: 480px) {
   .container {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    max-width: 500px;
-    width: 100%;
+    padding: 1.5rem;
   }
-
-  .container:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
-  }
-  
-  p {
-    text-align: center;
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
-
   h1 {
-    font-size: 1.5rem;
-    text-align: center;
-    color: #333;
+    font-size: 1.4rem;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #555;
+  p {
+    font-size: 0.85rem;
   }
-  
-  input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: border-color 0.2s;
-  }
-  
-  input:focus {
-    border-color: #6c63ff;
-    outline: none;
-  }
-  
-  .input-group {
-    margin-bottom: 1.25rem;
-  }
-  
-  .error-message {
-    color: #dc3545;
-    font-size: 0.9rem;
-    margin-top: 0.25rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .success-message {
-    color: #28a745;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-  }
-  
-  button {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: #6c63ff;
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #574bdf;
-  }
-  
-  .result-container {
-    margin-top: 1.75rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .result-row {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .result-row input {
-    padding-right: 3rem;
-  }
-  
-  .copy-btn {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    padding: 0.4rem;
-    border-radius: 8px;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .copy-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: #333;
-  }
-  
-  .copy-btn:hover {
-    background-color: #d5d5d5;
-  }
-  
-  @media (max-width: 480px) {
-    .container {
-      padding: 1.5rem;
-    }
-    h1 {
-      font-size: 1.4rem;
-    }
-    p {
-      font-size: 0.85rem;
-    }
-  }
+}
