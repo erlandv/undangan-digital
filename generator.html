@@ -19,12 +19,12 @@
     <link rel="icon" type="image/x-icon" href="https://tari.erland.me/assets/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"">
-    <link rel="stylesheet" href="./css/generator.css">
+    <link rel=" stylesheet" href="./css/generator.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Link Generator</h1>
+        <h1>Link Undangan Generator</h1>
         <p>Alat sederhana untuk membuat link undangan dengan nama tamu</p>
 
         <div class="input-group">
@@ -64,60 +64,52 @@
             }
         };
 
-        function generateUrl() {
+        const showMessage = (element, text, color = '', timeout = 5000) => {
+            element.textContent = text;
+            if (color) element.style.color = color;
+            if (timeout) setTimeout(() => element.textContent = '', timeout);
+        };
+
+        const generateUrl = () => {
             const baseUrl = $("baseUrl").value.trim();
             const guestName = $("guestName").value.trim();
             const errorMessage = $("errorMessage");
             const generatedUrl = $("generatedUrl");
 
-            errorMessage.textContent = "";
-            generatedUrl.value = "";
+            showMessage(errorMessage, '');
+            generatedUrl.value = '';
 
-            if (!baseUrl || !isValidUrl(baseUrl)) {
-                errorMessage.textContent = "Link undangan gak valid, coba cek lagi!";
-                return;
-            }
-
-            if (!guestName) {
-                errorMessage.textContent = "Isi dulu dong nama tamunya!";
-                return;
-            }
+            if (!baseUrl) return showMessage(errorMessage, "Isi dulu link undangannya");
+            if (!isValidUrl(baseUrl)) return showMessage(errorMessage, "Link undangannya gak valid");
+            if (!guestName) return showMessage(errorMessage, "Isi dulu nama tamunya");
 
             const finalBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
             generatedUrl.value = `${finalBase}?to=${encodeURIComponent(guestName)}`;
-        }
+        };
 
-        function copyUrl() {
+        const copyUrl = async () => {
             const urlField = $("generatedUrl");
             const copyMessage = $("copyMessage");
 
-            copyMessage.textContent = "";
+            showMessage(copyMessage, '');
 
             if (!urlField.value) {
-                copyMessage.textContent = "Gak ada link yang bisa dicopy.";
-                copyMessage.style.color = "#dc3545";
+                showMessage(copyMessage, "Gak ada link yang bisa disalin", "#dc3545");
                 return;
             }
 
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(urlField.value)
-                    .then(() => {
-                        showCopySuccess(copyMessage);
-                    });
-                    
-            } else {
-
-                urlField.select();
-                document.execCommand("copy");
-                showCopySuccess(copyMessage);
+            try {
+                if (navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(urlField.value);
+                } else {
+                    urlField.select();
+                    document.execCommand("copy");
+                }
+                showMessage(copyMessage, "Berhasil menyalin link undangan", "#28a745");
+            } catch (error) {
+                showMessage(copyMessage, "Gagal menyalin link undangan", "#dc3545");
             }
-        }
-
-        function showCopySuccess(element) {
-            element.textContent = "Berhasil copy link undangan ke clipboard!";
-            element.style.color = "#28a745";
-            setTimeout(() => element.textContent = "", 5000);
-        }
+        };
 
         $("guestName").addEventListener("input", generateUrl);
         $("baseUrl").addEventListener("input", generateUrl);
