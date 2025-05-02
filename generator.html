@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Generator untuk Nama Tamu Undangan</title>
-    <meta name="title" content="URL Generator untuk Nama Tamu Undangan">
-    <meta name="description" content="Tools sederhana untuk generate URL parameters dengan nama tamu undangan">
-    <meta property="og:title" content="URL Generator untuk Nama Tamu Undangan">
-    <meta property="og:description" content="Tools sederhana untuk generate URL parameters dengan nama tamu undangan">
+    <title>Link Generator dengan Nama Tamu Undangan</title>
+    <meta name="title" content="Link Generator dengan Nama Tamu Undangan">
+    <meta name="description" content="Tools sederhana untuk generate URL parameters, membuat link dengan nama tamu undangan.">
+    <meta property="og:title" content="Link Generator dengan Nama Tamu Undangan">
+    <meta property="og:description" content="Tools sederhana untuk generate URL parameters, membuat link dengan nama tamu undangan.">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="URL Generator untuk Nama Tamu Undangan">
+    <meta name="apple-mobile-web-app-title" content="Link Generator dengan Nama Tamu Undangan">
     <meta name="theme-color" content="#222222">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="canonical" href="https://tari.erland.me/generator">
@@ -18,27 +18,28 @@
     <link rel="apple-touch-icon" sizes="192x192" href="https://tari.erland.me/assets/images/icon-192x192.png">
     <link rel="icon" type="image/x-icon" href="https://tari.erland.me/assets/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap">
     <link rel="stylesheet" href="./css/generator.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>URL Generator</h1>
-        <p>Tools sederhana untuk generate URL parameters dengan nama tamu undangan</p>
+        <h1>Link Generator</h1>
+        <p>Alat sederhana untuk membuat link undangan dengan nama tamu</p>
 
         <div class="input-group">
-            <label for="baseUrl">URL Undangan</label>
-            <input type="text" id="baseUrl" placeholder="Ketik URL undangan" value="https://tari.erland.me" />
+            <label for="baseUrl">Link Undangan</label>
+            <input type="text" id="baseUrl" placeholder="Mana link undangannya?" value="https://tari.erland.me" />
         </div>
 
         <div class="input-group">
             <label for="guestName">Nama Tamu Undangan</label>
-            <input type="text" id="guestName" placeholder="Ketik nama tamu undangan" />
+            <input type="text" id="guestName" placeholder="Mau ngundang siapa?" />
             <div id="errorMessage" class="error-message"></div>
         </div>
 
         <div class="result-container" id="resultContainer">
-            <label for="generatedUrl">Hasil URL Undangan</label>
+            <label for="generatedUrl">Hasil Link Undangan</label>
             <div class="result-row">
                 <input type="text" id="generatedUrl" readonly />
                 <span class="copy-btn" onclick="copyUrl()">
@@ -73,12 +74,12 @@
             generatedUrl.value = "";
 
             if (!baseUrl || !isValidUrl(baseUrl)) {
-                errorMessage.textContent = "URL undangan gak valid, cek lagi ya!";
+                errorMessage.textContent = "Link undangan gak valid, coba cek lagi!";
                 return;
             }
 
             if (!guestName) {
-                errorMessage.textContent = "Isi nama tamunya dulu ya...";
+                errorMessage.textContent = "Isi dulu dong nama tamunya!";
                 return;
             }
 
@@ -93,7 +94,7 @@
             copyMessage.textContent = "";
 
             if (!urlField.value) {
-                copyMessage.textContent = "Belum ada URL yang bisa dicopy!";
+                copyMessage.textContent = "Gak ada link yang bisa dicopy.";
                 copyMessage.style.color = "#dc3545";
                 return;
             }
@@ -103,6 +104,7 @@
                     .then(() => {
                         showCopySuccess(copyMessage);
                     });
+                    
             } else {
 
                 urlField.select();
@@ -112,7 +114,7 @@
         }
 
         function showCopySuccess(element) {
-            element.textContent = "URL udah dicopy ke clipboard!";
+            element.textContent = "Berhasil copy link undangan ke clipboard!";
             element.style.color = "#28a745";
             setTimeout(() => element.textContent = "", 5000);
         }
