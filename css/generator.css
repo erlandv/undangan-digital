@@ -50,7 +50,9 @@ input {
   padding: 0.75rem 1rem;
   border: 1px solid #ccc;
   border-radius: 10px;
+  font-family: "Roboto Mono", monospace;
   font-size: 1rem;
+  font-optical-sizing: auto;
   transition: border-color 0.2s;
 }
 
