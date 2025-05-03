@@ -8,7 +8,9 @@ Undangan: [https://ai.erland.me/?to=Sahabatku](https://ai.erland.me/?to=Sahabatk
 
 Dashboard: [https://ai.erland.me/dashboard](https://ai.erland.me/dashboard)
 
-Generator: [https://ai.erland.me/generator](https://ai.erland.me/generator)
+Link Generator: [https://ai.erland.me/link-generator](https://ai.erland.me/link-generator)
+
+Text Generator: [https://ai.erland.me/text-generator](https://ai.erland.me/text-generator)
 
 ## License
 [Undangan Digital](https://github.com/erlandv/undangan-digital) is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
