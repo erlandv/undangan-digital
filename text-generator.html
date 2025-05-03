@@ -16,13 +16,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://ai.erland.me/assets/favicon.ico">
     <link rel="apple-touch-icon" sizes="192x192" href="https://ai.erland.me/assets/images/icon-192x192.png">
     <link rel="icon" type="image/x-icon" href="https://ai.erland.me/assets/favicon.ico">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"">
-    <link rel=" stylesheet" href="./css/text-generator.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="./css/generator.css">
 </head>
 
 <body>
-    <div class=" container">
+    <div class="container">
         <h1>Pembuat Teks Undangan</h1>
         <p>Alat sederhana untuk membuat teks undangan pernikahan dengan nama tamu dan link undangan</p>
 
@@ -54,10 +53,6 @@
             COPY_SUCCESS: "Teks undangan berhasil disalin",
             COPY_FAILED: "Gagal menyalin teks undangan"
         };
-        const COLORS = {
-            ERROR: "#dc3545",
-            SUCCESS: "#28a745"
-        };
 
         const getElement = (id) => document.getElementById(id);
 
@@ -65,13 +60,20 @@
             ["errorMessage", "copyMessage"].forEach(id => {
                 const el = getElement(id);
                 el.textContent = "";
-                el.style.color = "";
+                el.classList.remove("active");
             });
         }
 
-        function showMessage(element, message, color = "") {
+        function showMessage(element, message, isError = false) {
             element.textContent = message;
-            if (color) element.style.color = color;
+            element.classList.add("active");
+            if (isError) {
+                element.classList.add("error-message");
+                element.classList.remove("success-message");
+            } else {
+                element.classList.add("success-message");
+                element.classList.remove("error-message");
+            }
         }
 
         function generateInvitation() {
@@ -82,13 +84,14 @@
             invitationText.value = "";
 
             if (!guestName) {
-                showMessage(getElement("errorMessage"), MESSAGES.EMPTY_NAME, COLORS.ERROR);
+                showMessage(getElement("errorMessage"), MESSAGES.EMPTY_NAME, true);
                 return;
             }
 
             const paramsUrl = `${BASE_URL}/?to=${encodeURIComponent(guestName)}`;
 
-            invitationText.value = `Kepada Yth.
+            invitationText.value = 
+`Kepada Yth.
 Bapak/Ibu/Saudara/i
 *${guestName}*
 
@@ -116,7 +119,7 @@ _Wassalamualaikum warahmatullahi wabarakatuh_`;
             clearMessages();
 
             if (!invitationText.value) {
-                showMessage(msg, MESSAGES.NO_INVITATION, COLORS.ERROR);
+                showMessage(msg, MESSAGES.NO_INVITATION, true);
                 return;
             }
 
@@ -130,12 +133,15 @@ _Wassalamualaikum warahmatullahi wabarakatuh_`;
                         throw new Error("Copy failed");
                     }
                 }
-                showMessage(msg, MESSAGES.COPY_SUCCESS, COLORS.SUCCESS);
+                showMessage(msg, MESSAGES.COPY_SUCCESS, false);
             } catch (error) {
                 console.error("Copy failed:", error);
-                showMessage(msg, MESSAGES.COPY_FAILED, COLORS.ERROR);
+                showMessage(msg, MESSAGES.COPY_FAILED, true);
             } finally {
-                setTimeout(() => msg.textContent = "", 5000);
+                setTimeout(() => {
+                    msg.textContent = "";
+                    msg.classList.remove("active");
+                }, 5000);
             }
         }
     </script>

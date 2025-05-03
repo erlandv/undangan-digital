@@ -16,9 +16,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="https://ai.erland.me/assets/favicon.ico">
     <link rel="apple-touch-icon" sizes="192x192" href="https://ai.erland.me/assets/images/icon-192x192.png">
     <link rel="icon" type="image/x-icon" href="https://ai.erland.me/assets/favicon.ico">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"">
-    <link rel=" stylesheet" href="./css/link-generator.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="./css/generator.css">
 </head>
 
 <body>
@@ -64,8 +63,8 @@
         };
 
         const COLORS = {
-            ERROR: "#dc3545",
-            SUCCESS: "#28a745"
+            ERROR: "#ff4d4d",
+            SUCCESS: "#000000"
         };
 
         const isValidUrl = url => {
@@ -77,10 +76,21 @@
             }
         };
 
-        const showMessage = (element, text, color = '', timeout = 5000) => {
+        const showMessage = (element, text, timeout = 5000) => {
             element.textContent = text;
-            element.style.color = color || '';
-            if (timeout && text) setTimeout(() => element.textContent = '', timeout);
+
+            if (text) {
+                element.classList.add('active');
+            } else {
+                element.classList.remove('active');
+            }
+
+            if (timeout && text) {
+                setTimeout(() => {
+                    element.textContent = '';
+                    element.classList.remove('active');
+                }, timeout);
+            }
         };
 
         const normalizeUrl = url => url.endsWith("/") ? url : `${url}/`;
@@ -93,9 +103,9 @@
             showMessage(errorMessage, '');
             generatedUrl.value = '';
 
-            if (!baseUrl) return showMessage(errorMessage, MESSAGES.EMPTY_BASE_URL, COLORS.ERROR);
-            if (!isValidUrl(baseUrl)) return showMessage(errorMessage, MESSAGES.INVALID_URL, COLORS.ERROR);
-            if (!guestName) return showMessage(errorMessage, MESSAGES.EMPTY_GUEST, COLORS.ERROR);
+            if (!baseUrl) return showMessage(errorMessage, MESSAGES.EMPTY_BASE_URL);
+            if (!isValidUrl(baseUrl)) return showMessage(errorMessage, MESSAGES.INVALID_URL);
+            if (!guestName) return showMessage(errorMessage, MESSAGES.EMPTY_GUEST);
 
             generatedUrl.value = `${normalizeUrl(baseUrl)}?to=${encodeURIComponent(guestName)}`;
         };
@@ -107,7 +117,7 @@
             showMessage(copyMessage, '');
 
             if (!urlField.value) {
-                return showMessage(copyMessage, MESSAGES.NO_URL, COLORS.ERROR);
+                return showMessage(copyMessage, MESSAGES.NO_URL);
             }
 
             try {
@@ -117,13 +127,23 @@
                     urlField.select();
                     document.execCommand("copy");
                 }
-                showMessage(copyMessage, MESSAGES.COPY_SUCCESS, COLORS.SUCCESS);
+                showMessage(copyMessage, MESSAGES.COPY_SUCCESS);
             } catch {
-                showMessage(copyMessage, MESSAGES.COPY_FAILED, COLORS.ERROR);
+                showMessage(copyMessage, MESSAGES.COPY_FAILED);
             }
         };
 
-        ["guestName", "baseUrl"].forEach(id => $(id).addEventListener("input", generateUrl));
+        ["guestName", "baseUrl"].forEach(id => {
+            $(id).addEventListener("input", generateUrl);
+        });
+
+        const playClickSound = () => {
+            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU...');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log("Audio play failed:", e));
+        };
+
+        $("copyMessage").parentElement.previousElementSibling.querySelector('.copy-btn').addEventListener('click', playClickSound);
     </script>
 </body>
 
