@@ -1,16 +1,29 @@
 # Undangan Pernikahan Digital
-Web undangan pernikahan digital dengan tampilan dan fitur yang sederhana. Dibangun dengan Bootstrap, AOS, Normalize, Confetti, Google Fonts, dan Vanilla JS.
+Website undangan digital dengan Dashboard, Link Generator, dan Text Generator.
+Frontend dibangun menggunakan Bootstrap, AOS, Fontawsome, Normalize, Confetti, Google Fonts, dan Vanilla JS.
 
 ## Preview
-![Thumbnail](/assets/images/preview.png)
+Preview undangan digital, dashboard undangan, link generator, dan text generator.
 
-Undangan: [https://ai.erland.me/?to=Sahabatku](https://ai.erland.me/?to=Sahabatku)
+### Undangan
+Undangan pernikahan digital dengan tampilan dan fitur yang sederhana.
+[https://ai.erland.me/?to=Sahabatku](https://ai.erland.me/?to=Sahabatku)
+![Thumbnail](./assets/images/preview-undangan.webp)
 
-Dashboard: [https://ai.erland.me/dashboard](https://ai.erland.me/dashboard)
+### Dashboard
+Dashboard untuk mengelola ucapan dan keterangan presensi dari para tamu undangan.
+[https://ai.erland.me/dashboard](https://ai.erland.me/dashboard)
+![Thumbnail](./assets/images/preview-dashboard.webp)
 
-Link Generator: [https://ai.erland.me/link-generator](https://ai.erland.me/link-generator)
+### Link Generator
+Alat sederhana untuk membuat link undangan pernikahan dengan URL parameters nama tamu.
+[https://ai.erland.me/link-generator](https://ai.erland.me/link-generator)
+![Thumbnail](./assets/images/preview-link-generator.webp)
 
-Text Generator: [https://ai.erland.me/text-generator](https://ai.erland.me/text-generator)
+### Text Generator
+Alat sederhana untuk membuat teks undangan pernikahan dengan nama tamu dan link undangan.
+[https://ai.erland.me/text-generator](https://ai.erland.me/text-generator)
+![Thumbnail](./assets/images/preview-text-generator.webp)
 
 ## License
 [Undangan Digital](https://github.com/erlandv/undangan-digital) is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
