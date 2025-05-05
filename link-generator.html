@@ -67,6 +67,11 @@
             SUCCESS: "#000000"
         };
 
+        const capitalizeWords = str =>
+            str.replace(/\b\w+/g, word =>
+                word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            );
+
         const isValidUrl = url => {
             try {
                 new URL(url);
@@ -96,18 +101,21 @@
         const normalizeUrl = url => url.endsWith("/") ? url : `${url}/`;
 
         const generateUrl = () => {
-            const [baseUrl, guestName] = [$("baseUrl"), $("guestName")].map(el => el.value.trim());
+            const [baseUrlRaw, guestNameRaw] = [$("baseUrl"), $("guestName")].map(el => el.value.trim());
             const errorMessage = $("errorMessage");
             const generatedUrl = $("generatedUrl");
 
             showMessage(errorMessage, '');
             generatedUrl.value = '';
 
-            if (!baseUrl) return showMessage(errorMessage, MESSAGES.EMPTY_BASE_URL);
-            if (!isValidUrl(baseUrl)) return showMessage(errorMessage, MESSAGES.INVALID_URL);
-            if (!guestName) return showMessage(errorMessage, MESSAGES.EMPTY_GUEST);
+            if (!baseUrlRaw) return showMessage(errorMessage, MESSAGES.EMPTY_BASE_URL);
+            if (!isValidUrl(baseUrlRaw)) return showMessage(errorMessage, MESSAGES.INVALID_URL);
+            if (!guestNameRaw) return showMessage(errorMessage, MESSAGES.EMPTY_GUEST);
 
-            generatedUrl.value = `${normalizeUrl(baseUrl)}?to=${encodeURIComponent(guestName)}`;
+            const baseUrl = normalizeUrl(baseUrlRaw);
+            const guestName = capitalizeWords(guestNameRaw);
+
+            generatedUrl.value = `${baseUrl}?to=${encodeURIComponent(guestName)}`;
         };
 
         const copyUrl = async () => {

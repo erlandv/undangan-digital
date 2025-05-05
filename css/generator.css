@@ -48,11 +48,7 @@ body {
     right: 0;
     width: 25%;
     height: 100%;
-    background: repeating-linear-gradient(45deg,
-            var(--primary),
-            var(--primary) 8px,
-            var(--secondary) 8px,
-            var(--secondary) 16px);
+    background: repeating-linear-gradient(45deg, var(--primary), var(--primary) 8px, var(--secondary) 8px, var(--secondary) 16px);
     opacity: 0.05;
     z-index: 0;
 }
@@ -79,6 +75,14 @@ p {
     position: relative;
     z-index: 1;
 }
+
+#guestName {
+    text-transform: capitalize;
+  }
+  
+#guestName::placeholder {
+    text-transform: none;
+  }
 
 label {
     display: block;
