@@ -62,7 +62,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.js" integrity="sha256-4QOrAnhDOdVsk8o96+LFopk3LK/FIVFI1VKD3gRuhtE=" crossorigin="anonymous"></script>
     <script src="./dist/guest.js"></script>
   </head>
-  <body id="main-body">
+  <body data-key="1988adb1eb974665d8d077d2e7a8e1c398b8f9cadcfac8702c" data-url="https://api.erland.me/">
     <!-- Root Invitation -->
     <div class="row m-0 p-0" style="opacity: 0;" id="root">
       <!-- Desktop mode -->
@@ -493,27 +493,5 @@
         </div>
       </div>
     </div>
-    <script>
-      const hostname = window.location.hostname;
-  
-      const config = {
-        'localhost': {
-          key: '0b1aba74fe13ec5ab5d4149ef3958ae6bf699c0e4276caa30b',
-          url: 'http://localhost:8000/',
-        },
-        'ai.erland.me': {
-          key: '0b1aba74fe13ec5ab5d4149ef3958ae6bf699c0e4276caa30b',
-          url: 'http://localhost:8000/',
-        },
-        'tari.erland.me': {
-          key: '1988adb1eb974665d8d077d2e7a8e1c398b8f9cadcfac8702c',
-          url: 'https://api.erland.me/',
-        },
-      };
-  
-      const env = config[hostname] || config['localhost'];
-      const body = document.getElementById('main-body');
-      body.dataset.url = env.url;
-      </script>
   </body>
 </html>
