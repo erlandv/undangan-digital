@@ -22,7 +22,7 @@ export const basicAnimation = () => {
  * @param {number} [until=15]
  * @returns {void}
  */
-export const openAnimation = (until = 15) => {
+export const openAnimation = (until = 30) => {
     const duration = until * 1000;
     const animationEnd = Date.now() + duration;
 
@@ -40,7 +40,7 @@ export const openAnimation = (until = 15) => {
             window.confetti({
                 particleCount: 1,
                 startVelocity: 0,
-                ticks: Math.max(50, 75 * (timeLeft / duration)),
+                ticks: Math.max(70, 100 * (timeLeft / duration)),
                 origin: {
                     x: Math.random(),
                     y: Math.abs(Math.random() - (timeLeft / duration)),
