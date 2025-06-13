@@ -19,6 +19,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.VPS_PORT }}
           script: |
             cd /var/www/project/undangan
             git pull origin main
