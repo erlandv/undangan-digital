@@ -21,5 +21,5 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cd /var/www/project/undangan
+            cd /var/www/undangan/frontend
             git pull origin main
