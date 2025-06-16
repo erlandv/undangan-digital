@@ -28,15 +28,8 @@ svg>path {
     width: inherit;
 }
 
-html[data-bs-theme="light"] #welcome {
-    background-image: url(/assets/images/background-light.webp);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-}
-
-html[data-bs-theme="dark"] #welcome {
-    background-image: url(/assets/images/background-dark.webp);
+#welcome {
+    background-image: url(/assets/images/bg-welcome.webp);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
