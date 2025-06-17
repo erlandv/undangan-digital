@@ -38,9 +38,6 @@ svg>path {
 @media (max-width: 1024px) {
     #welcome {
         background-image: url(/assets/images/background-welcome-mobile.webp);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
     }
 }
 
