@@ -29,10 +29,19 @@ svg>path {
 }
 
 #welcome {
-    background-image: url(/assets/images/bg-welcome.webp);
+    background-image: url(/assets/images/background-welcome-desktop.webp);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+}
+
+@media (max-width: 1024px) {
+    #welcome {
+        background-image: url(/assets/images/background-welcome-mobile.webp);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
 }
 
 html[data-bs-theme="dark"] .navbar {
