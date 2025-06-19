@@ -23,5 +23,5 @@ jobs:
           script: |
             cd /var/www/undangan/frontend
             git pull origin main
-            npm ci --omit=dev
+            npm install --omit=dev
             npm run build
