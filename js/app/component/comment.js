@@ -33,7 +33,7 @@ export const comment = (() => {
      * @returns {string}
      */
     const onNullComment = () => {
-        return `<div class="text-center p-4 my-2 bg-theme-auto rounded-4 shadow"><p class="fw-bold p-0 m-0" style="font-size: 0.95rem;">Yuk bagikan undangan ini biar banyak komentarnya</p></div>`;
+        return `<div class="text-center p-4 my-2 bg-theme-auto rounded-4 shadow"><p class="fw-bold p-0 m-0" style="font-size: 0.95rem;">Jadilah yang pertama memberikan ucapan untuk kedua mempelai!</p></div>`;
     };
 
     /**
