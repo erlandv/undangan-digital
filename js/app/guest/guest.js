@@ -180,7 +180,7 @@ export const guest = (() => {
 
         document.querySelector('#addToCalendar')?.addEventListener('click', () => {
             if (isAppleDevice()) {
-                window.location.href = 'https://tari.erland.me/tari-erland.ics'; // iOS / macOS → Apple Calendar
+                window.location.href = 'https://tari.erland.me/wedding.ics'; // iOS / macOS → Apple Calendar
             } else {
                 const url = buildGoogleCalendarURL();
                 window.open(url, '_blank'); // Android / lainnya → Google Calendar

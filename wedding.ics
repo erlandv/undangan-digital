@@ -2,12 +2,17 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//TariErlandWedding//EN
 BEGIN:VEVENT
-UID:20240701T100000Z@tari.erland.me
-DTSTAMP:20240701T100000Z
+UID:undangan@tari.erland.me
+DTSTAMP:20250724T010000Z
 DTSTART:20250724T030000Z
 DTEND:20250724T070000Z
 SUMMARY:The Wedding of Tari and Erland
 DESCRIPTION:Tanpa mengurangi rasa hormat, dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.
 LOCATION:https://maps.apple/p/s-ctJLRI.KhS3_
+BEGIN:VALARM
+TRIGGER:-PT1H
+ACTION:DISPLAY
+DESCRIPTION:Reminder: The Wedding of Tari and Erland
+END:VALARM
 END:VEVENT
 END:VCALENDAR
