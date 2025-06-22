@@ -188,6 +188,8 @@ export const guest = (() => {
         });
     };
 
+    document.addEventListener('DOMContentLoaded', buildGoogleCalendar);
+
     /**
      * @returns {void}
      */
