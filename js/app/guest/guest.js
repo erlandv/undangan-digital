@@ -173,33 +173,6 @@ export const guest = (() => {
             return url.toString();
         };
 
-        const buildICSFile = () => {
-            const startDate = '20250724T030000Z';
-            const endDate = '20250724T070000Z';
-            const icsContent = `
-                BEGIN:VCALENDAR
-                VERSION:2.0
-                PRODID:-//TariErlandWedding//EN
-                BEGIN:VEVENT
-                UID:${Date.now()}@tari.erland.me
-                DTSTAMP:${startDate}
-                DTSTART:${startDate}
-                DTEND:${endDate}
-                SUMMARY:The Wedding of Tari and Erland
-                DESCRIPTION:Tanpa mengurangi rasa hormat, dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.
-                LOCATION:https://maps.apple/p/s-ctJLRI.KhS3_
-                END:VEVENT
-                END:VCALENDAR
-            `.trim();
-            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'tari-erland-wedding.ics';
-            a.click();
-        };
-
         const isAppleDevice = () => {
             const ua = navigator.userAgent || window.navigator.userAgent;
             return /iPad|iPhone|iPod|Macintosh/.test(ua) && !window.MSStream;
@@ -207,7 +180,7 @@ export const guest = (() => {
 
         document.querySelector('#addToCalendar')?.addEventListener('click', () => {
             if (isAppleDevice()) {
-                buildICSFile(); // iOS / macOS → Apple Calendar
+                window.location.href = 'https://tari.erland.me/tari-erland.ics'; // iOS / macOS → Apple Calendar
             } else {
                 const url = buildGoogleCalendarURL();
                 window.open(url, '_blank'); // Android / lainnya → Google Calendar

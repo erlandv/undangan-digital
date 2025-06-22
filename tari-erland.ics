@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TariErlandWedding//EN
+BEGIN:VEVENT
+UID:${Date.now()}@tari.erland.me
+DTSTAMP:${startDate}
+DTSTART:${startDate}
+DTEND:${endDate}
+SUMMARY:The Wedding of Tari and Erland
+DESCRIPTION:Tanpa mengurangi rasa hormat, dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.
+LOCATION:https://maps.apple/p/s-ctJLRI.KhS3_
+END:VEVENT
+END:VCALENDAR
