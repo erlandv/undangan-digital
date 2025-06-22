@@ -159,19 +159,60 @@ export const guest = (() => {
          */
         const formatDate = (d) => (new Date(d + ':00Z')).toISOString().replace(/[-:]/g, '').split('.')[0];
 
-        const url = new URL('https://calendar.google.com/calendar/render');
-        const data = {
-            action: 'TEMPLATE',
-            text: 'The Wedding of Tari and Erland',
-            dates: `${formatDate('2025-07-24 09:00')}/${formatDate('2025-07-24 13:00')}`,
-            details: 'Tanpa mengurangi rasa hormat, dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami. Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa dan restu kepada kedua mempelai.',
-            location: 'https://maps.app.goo.gl/PtFWJys9FF6fkzhG7',
-            ctz: 'Asia/Jakarta',
+        const buildGoogleCalendarURL = () => {
+            const url = new URL('https://calendar.google.com/calendar/render');
+            const data = {
+                action: 'TEMPLATE',
+                text: 'The Wedding of Tari and Erland',
+                dates: `${formatDate('2025-07-24 10:00')}/${formatDate('2025-07-24 14:00')}`,
+                details: 'Tanpa mengurangi rasa hormat, dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.',
+                location: 'https://maps.app.goo.gl/PtFWJys9FF6fkzhG7',
+                ctz: 'Asia/Jakarta',
+            };
+            Object.entries(data).forEach(([k, v]) => url.searchParams.set(k, v));
+            return url.toString();
         };
 
-        Object.entries(data).forEach(([k, v]) => url.searchParams.set(k, v));
+        const buildICSFile = () => {
+            const startDate = '20250724T030000Z';
+            const endDate = '20250724T070000Z';
+            const icsContent = `
+                BEGIN:VCALENDAR
+                VERSION:2.0
+                PRODID:-//TariErlandWedding//EN
+                BEGIN:VEVENT
+                UID:${Date.now()}@tari.erland.me
+                DTSTAMP:${startDate}
+                DTSTART:${startDate}
+                DTEND:${endDate}
+                SUMMARY:The Wedding of Tari and Erland
+                DESCRIPTION:Tanpa mengurangi rasa hormat, dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami.
+                LOCATION:https://maps.apple/p/s-ctJLRI.KhS3_
+                END:VEVENT
+                END:VCALENDAR
+            `.trim();
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
 
-        document.querySelector('#home button')?.addEventListener('click', () => window.open(url, '_blank'));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'tari-erland-wedding.ics';
+            a.click();
+        };
+
+        const isAppleDevice = () => {
+            const ua = navigator.userAgent || window.navigator.userAgent;
+            return /iPad|iPhone|iPod|Macintosh/.test(ua) && !window.MSStream;
+        };
+
+        document.querySelector('#addToCalendar')?.addEventListener('click', () => {
+            if (isAppleDevice()) {
+                buildICSFile(); // iOS / macOS → Apple Calendar
+            } else {
+                const url = buildGoogleCalendarURL();
+                window.open(url, '_blank'); // Android / lainnya → Google Calendar
+            }
+        });
     };
 
     /**
