@@ -557,6 +557,7 @@ export const comment = (() => {
                 document.getElementById(`ip-${c.uuid}`).innerHTML = `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${result}</strong>`;
             })
             .catch((err) => {
+                console.error('Failed to fetch IP info:', err);
                 document.getElementById(`ip-${c.uuid}`).innerHTML = `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${util.escapeHtml(err.message)}</strong>`;
             });
     };
