@@ -544,7 +544,7 @@ export const comment = (() => {
             return;
         }
 
-        fetch(`https://freeipapi.com/api/json/${c.ip}`)
+        fetch(`https://ipwho.is/${c.ip}`)
             .then((res) => res.json())
             .then((res) => {
                 let result = res.cityName + ' - ' + res.regionName;
