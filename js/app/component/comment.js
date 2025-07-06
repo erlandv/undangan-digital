@@ -547,6 +547,8 @@ export const comment = (() => {
         fetch(`https://api.erland.me/ipapi.php?ip=${c.ip}`)
             .then((res) => res.json())
             .then((res) => {
+                console.log('API Response:', res);
+                
                 let result = res.cityName + ' - ' + res.regionName;
 
                 if (res.cityName === '-' && res.regionName === '-') {
