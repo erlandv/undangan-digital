@@ -548,19 +548,26 @@ export const comment = (() => {
             .then((res) => res.json())
             .then((res) => {
                 console.log('API Response:', res);
-                
-                let result = res.cityName + ' - ' + res.regionName;
 
-                if (res.cityName === '-' && res.regionName === '-') {
+                const city = res.cityName || '-';
+                const region = res.regionName || '-';
+                const country = res.countryName || '-';
+                const isp = res.asnOrganization || '-';
+
+                let result = `${city}, ${region} - ${country}. ${isp}`;
+
+                if (city === '-' && region === '-' && country === '-' && isp === '-') {
                     result = 'localhost';
                 }
 
                 tracker.set(c.ip, result);
-                document.getElementById(`ip-${c.uuid}`).innerHTML = `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${result}</strong>`;
+                document.getElementById(`ip-${c.uuid}`).innerHTML =
+                    `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${util.escapeHtml(result)}</strong>`;
             })
             .catch((err) => {
                 console.error('Failed to fetch IP info:', err);
-                document.getElementById(`ip-${c.uuid}`).innerHTML = `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${util.escapeHtml(err.message)}</strong>`;
+                document.getElementById(`ip-${c.uuid}`).innerHTML =
+                    `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${util.escapeHtml(err.message)}</strong>`;
             });
     };
 
