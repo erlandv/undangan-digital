@@ -545,19 +545,21 @@ export const comment = (() => {
         }
 
         fetch(`https://api.erland.me/ipapi.php?ip=${c.ip}`)
-    .then(res => res.json())
-    .then(res => {
-        let result = `${res.cityName} - ${res.regionName}`;
-        if (res.cityName === '-' && res.regionName === '-') result = 'localhost';
+            .then((res) => res.json())
+            .then((res) => {
+                let result = res.cityName + ' - ' + res.regionName;
 
-        tracker.set(c.ip, result);
-        document.getElementById(`ip-${c.uuid}`).innerHTML = 
-            `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${result}</strong>`;
-    })
-    .catch(err => {
-        document.getElementById(`ip-${c.uuid}`).innerHTML = 
-            `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${util.escapeHtml(err.message)}</strong>`;
-    });
+                if (res.cityName === '-' && res.regionName === '-') {
+                    result = 'localhost';
+                }
+
+                tracker.set(c.ip, result);
+                document.getElementById(`ip-${c.uuid}`).innerHTML = `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${result}</strong>`;
+            })
+            .catch((err) => {
+                document.getElementById(`ip-${c.uuid}`).innerHTML = `<i class="fa-solid fa-location-dot me-1"></i>${util.escapeHtml(c.ip)} <strong>${util.escapeHtml(err.message)}</strong>`;
+            });
+    };
 
     /**
      * @returns {void}
