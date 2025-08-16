@@ -25,4 +25,4 @@ Alat sederhana untuk membuat teks undangan pernikahan dengan nama tamu dan link 
 [Undangan Digital](https://github.com/erlandv/undangan-digital) is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Credit
-Created by [dewanakl](https://github.com/dewanakl), modified by [erlandv](https://github.com/erlandv). For documentation please refer to the original repository: [https://github.com/dewanakl/undangan](https://github.com/dewanakl/undangan).
+Created by [dewanakl](https://github.com/dewanakl) (Thank you so much!), modified by [erlandv](https://github.com/erlandv). For documentation please refer to the original repository: [https://github.com/dewanakl/undangan](https://github.com/dewanakl/undangan).
